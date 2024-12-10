@@ -6,10 +6,11 @@ const router = express.Router();
 // Ruta para renderizar todos los productos
 router.get('/realtimeproducts', async (req, res) => {
   try {
-
+    const products = await productManagerInstance.getProducts();
     if (!products) {
       throw new Error('No se encontraron productos');
     }
+   
     res.render('realtimeproducts');
   } catch (error) {
     res.status(500).send('Error al obtener productos');

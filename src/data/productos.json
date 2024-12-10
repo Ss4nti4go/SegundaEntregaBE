@@ -96,19 +96,5 @@
       "/images/maquina_abdominales_1.jpg",
       "/images/maquina_abdominales_2.jpg"
     ]
-  },
-  {
-    "id": "10",
-    "title": "Aceite de Coco",
-    "description": "Aceite de coco orgánico para salud y belleza.",
-    "code": "ACEITE-001",
-    "price": 18.5,
-    "status": true,
-    "stock": 120,
-    "category": "Suplementos",
-    "thumbnails": [
-      "/images/aceite_coco_1.jpg",
-      "/images/aceite_coco_2.jpg"
-    ]
   }
 ]

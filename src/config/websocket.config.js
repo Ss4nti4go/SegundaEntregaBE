@@ -5,12 +5,12 @@ export const config = (httpServer) => {
   const io = new Server(httpServer);
   const productManagerInstance = new productManager(io); 
 
-  io.on("connection", (socket) => {
+  io.on("connection",async (socket) => {
     console.log("Cliente conectado");
 
     // Enviar productos al cliente cuando se conecta
-    socket.emit('updateProducts', productManagerInstance.getProducts());
-
+    socket.emit('updateProducts', await productManagerInstance.getProducts());
+  
     socket.on("disconnect", () => {
       console.log("Cliente desconectado");
     });
@@ -20,8 +20,8 @@ export const config = (httpServer) => {
       console.log(`Nuevo producto recibido: ${JSON.stringify(data)}`);
       try {
         await productManagerInstance.addProduct(data);
-   
-        socket.emit('updateProducts');
+        
+        socket.emit('updateProducts', await productManagerInstance.getProducts());
       } catch (err) {
         console.error("Error al agregar el producto: ", err);
       }
@@ -33,6 +33,7 @@ export const config = (httpServer) => {
         try {
           // Usar data.id en lugar de id
           await productManagerInstance.deleteProduct(data.id);
+          socket.emit('updateProducts', await productManagerInstance.getProducts());
         } catch (err) {
           console.error("Error al eliminar el producto: ", err);
         }

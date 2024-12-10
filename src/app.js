@@ -22,9 +22,9 @@ configHandlebars(app);
 // Rutas para manejar productos, carritos y vistas
 app.use('/api/products', routerProducts);
 app.use('/api/carts', routerCart);
-app.get('/realtimeproducts', (req, res) => {
+/*app.get('/realtimeproducts', (req, res) => {
     res.render('realtimeproducts', { title: 'App de prueba' });
-});
+});*/
 
 app.use('/', routerViewProductos);
 
